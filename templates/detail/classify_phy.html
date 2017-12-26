@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{%block head%}
+{%load filters%}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+<table id="model01" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">{{title}}(物理设备)信息概览</h4>
+    </th>
+    <tr>
+        <th>ID</th>
+        <th>服务器IP</th>
+        <th>服务器品牌</th>
+        <th>操作系统版本</th>
+        <th>使用状态</th>
+        <th>宿主机类型</th>
+        <th>连接的用户</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for phy_server in page%}
+    <tr>
+        <td>{{phy_server.id}}</td>
+        <td>{{phy_server.server_ip}}</td>
+        <td>{{phy_server.machine_brand}}</td>
+        <td>{{phy_server.system_ver}}</td>
+        <td>{{ sn_states|get_state:phy_server.conn_phy_id }}</td>
+
+        {%if phy_server.vir_type == "0"%}
+        <td><a href="/list/?type=ct{{phy_server.id}}&p=1" target="_blank">KVM</a></td>
+        {%elif phy_server.vir_type == "1"%}
+        <td><a href="/list/?type=ct{{phy_server.id}}&p=1" target="_blank">Docker</a></td>
+        {%elif phy_server.vir_type == "2"%}
+        <td><a href="/list/?type=ct{{phy_server.id}}&p=1" target="_blank">ESXI</a></td>
+        {%else%}
+        <td><a href="/list/?type=ct{{phy_server.id}}&p=1&" target="_blank">其它类型</a></td>
+        {%endif%}
+        <td><a href="/detail_c/?dID={{phy_server.conn_phy.id}}" target="_blank">用户ID={{phy_server.conn_phy.id}}</a></td>
+        <td><a href="/detail_p/?dID={{phy_server.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endblock body%}
+
+

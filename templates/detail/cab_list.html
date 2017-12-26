@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+<table id="" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">机柜信息</h4>
+    </th>
+    <tr>
+        <th>序号</th>
+        <th>机柜id</th>
+        <th>机柜编号</th>
+        <th>机柜U数</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for cabinet in page%}
+    <tr>
+        <td>{{forloop.counter|cut:'\n'}}</td>
+        <td>{{cabinet.id}}</td>
+        <td>{{cabinet.cab_name}}</td>
+        <td>{{cabinet.cab_lever}}</td>
+        <td><a href="#">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+
+{%endblock body%}
+
+

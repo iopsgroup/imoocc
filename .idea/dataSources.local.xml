@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="iops@localhost" uuid="be89386a-7947-4204-a5bb-68b8d19e53eb">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <resolve-scope>iops:</resolve-scope>
+    </data-source>
+  </component>
+</project>

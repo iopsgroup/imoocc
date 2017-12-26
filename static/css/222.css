@@ -1,0 +1,39 @@
+        .breathe-btn {
+            /* position: relative; */
+            width: 10px;
+            height: 10px;
+            margin: 40px auto;
+            /* line-height: 40px; */
+            border: 1px solid #f47920;
+            border-radius: 5px;
+            /* color: #fff; */
+            /* font-size: 20px; */
+            /* text-align: center; */
+            /* cursor: pointer; */
+            /* box-shadow: 0 1px 2px rgba(0, 0, 0, .3); */
+            /* overflow: hidden; */
+            /* background-image: -webkit-gradient(linear, left top, left bottom, from(#6cc3fe), to(#21a1d0)); */
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#f7acbc), to(#f47920));
+            animation-timing-function: ease-in-out;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-name: breathe;
+            -webkit-animation-name: breathe;
+            animation-duration: 2700ms;
+            -webkit-animation-duration: 2700ms;
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+            animation-direction: alternate;
+            -webkit-animation-direction: alternate;
+        }
+
+        @-webkit-keyframes breathe {
+            0% {
+                opacity: 0.1;
+                box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+            }
+            100% {
+                opacity: 1;
+                box-shadow: 0 1px 30px rgba(59, 255, 255, 1);
+                border: 1px solid rgba(59, 235, 235, 1);
+            }
+        }

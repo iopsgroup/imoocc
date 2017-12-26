@@ -1,0 +1,100 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th,
+    table td {
+        text-align: center;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+{%load filters%}
+<table class="table table-hover table-striped">
+    <thead>
+    <th colspan="3" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; font-weight:bold"> {{detail_name}}详细信息</h4>
+    </th>
+    <tr>
+        <th style="width:20%;">编号</th>
+        <th style="width:30%; text-align: left;">名称</th>
+        <th style="width:50%; text-align: left;">值</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <th scope="row">1</th>
+        <td style="text-align: left;">设备id</td>
+        <td style="text-align: left;">{{item.id}}</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td style="text-align: left;">服务器IP (server_ip)</td>
+        <td style="text-align: left;">{{item.server_ip}}</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td style="text-align: left;">服务器品牌 (machine_brand)</td>
+        <td style="text-align: left;">{{item.machine_brand}}</td>
+    </tr>
+    <tr>
+        <th scope="row">4</th>
+        <td style="text-align: left;">操作系统主机名 (sys_hostname)</td>
+        <td style="text-align: left;">{{item.sys_hostname}}</td>
+    </tr>
+    <tr>
+        <th scope="row">5</th>
+        <td style="text-align: left;">操作系统版本 (system_ver)</td>
+        <td style="text-align: left;">{{item.system_ver}}</td>
+    </tr>
+    <tr>
+        <th scope="row">6</th>
+        <td style="text-align: left;">设备序列号 sn</td>
+        <td style="text-align: left;">{{item.sn}}</td>
+    </tr>
+    <tr>
+        <th scope="row">7</th>
+        <td style="text-align: left;">MAC地址(mac)</td>
+        <td style="text-align: left;">{{item.mac}}</td>
+    </tr>
+    <tr>
+        <th scope="row">8</th>
+        <td style="text-align: left;">宿主机类型 (vir_type)</td>
+        <td style="text-align: left;">{{item.vir_type|revalue}}</td>
+    </tr>
+    <tr>
+        <th scope="row">9</th>
+        <td style="text-align: left;">物理机所属机柜编号 (ser_cabin_id)</td>
+        <td style="text-align: left;">{{item.ser_cabin_id|cab_name}}</td>
+    </tr>
+    <tr>
+        <th scope="row">10</th>
+        <td style="text-align: left;">连接的用户ID (conn_phy_id)</td>
+        <td style="text-align: left;"><a href="/detail_c/?dID={{item.conn_phy_id}}" target="_blank">ID={{item.conn_phy_id}}</a></td>
+    </tr>
+    <tr>
+        <th scope="row">11</th>
+        <td style="text-align: left;">使用状态</td>
+        <td style="text-align: left;">
+            <form action="/record/state_handdle/?detail_type=p" method="post" class="form-inline">
+                <input type="text" name="conn_id" value="{{item.conn_phy_id}}" style="display: none">
+                <select class="form-control" name="state">
+                    <option>{{sn_states|get_state:item.conn_phy_id}}</option>
+                    <option class="divider">-------------</option>
+                    <option>下线</option>
+                    <option>线上运行</option>
+                    <option>测试使用</option>
+                    <option>已报废</option>
+                </select>
+                <button type="submit" class="btn btn-default btn-success">提交修改</button>
+                {%csrf_token%}
+            </form>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+{%endblock body%}
+

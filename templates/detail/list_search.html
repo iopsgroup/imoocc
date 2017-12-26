@@ -1,0 +1,145 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+<div style="margin: 0; clear: both; padding-top: 10px; padding-bottom: 10px; font-size: 20px;">搜索 "<b>{{keywords}}</b>" 结果如下：</div>
+{%load filters%}
+{%if phy_servers|length%}
+<table id="model01" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="9" class="success">
+        <h4 style="text-align:center; font-weight:bold">物理设备主要信息概览</h4>
+    </th>
+    <tr>
+        <th>序号</th>
+        <th>ID</th>
+        <th>服务器IP</th>
+        <th>服务器品牌</th>
+        <th>操作系统版本</th>
+        <th>使用状态</th>
+        <th>宿主机类型</th>
+        <th>连接的用户</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for phy_server in phy_servers%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{phy_server.id}}</td>
+        <td>{{phy_server.server_ip}}</td>
+        <td>{{phy_server.machine_brand}}</td>
+        <td>{{phy_server.system_ver}}</td>
+        <td>{{ sn_states|get_state:phy_server.conn_phy_id }}</td>
+        <td><a href="/list/?type=ct{{phy_server.id}}&p=1" target="_blank">{{phy_server.vir_type|revalue}}</a></td>
+        <td><a href="/detail_c/?dID={{phy_server.conn_phy.id}}" target="_blank">用户ID={{phy_server.conn_phy.id}}</a></td>
+        <td><a href="/detail_p/?dID={{phy_server.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endif%}
+{%if vir_servers|length%}
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="9" class="info">
+        <h4 style="text-align:center; font-weight:bold">虚拟设备主要信息概览</h4>
+    </th>
+    <tr>
+        <th>序号</th>
+        <th>ID</th>
+        <th>服务器IP</th>
+        <th>服务器类型</th>
+        <th>操作系统主机名</th>
+        <th>操作系统版本</th>
+        <th>使用状态</th>
+        <th>连接的用户</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for vir_server in vir_servers%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{vir_server.id}}</td>
+        <td style="word-break: break-all; widtd: 16%;">{{vir_server.server_ip}}</td>
+        <td>{{vir_server.server_type}}</td>
+        <td>{{vir_server.sys_hostname}}</td>
+        <td>{{vir_server.system_ver}}</td>
+        <td>{{sn_states|get_state:vir_server.conn_vir_id}}</td>
+        <td><a href="/detail_c/?dID={{vir_server.conn_vir.id}}" target="_blank">用户ID={{vir_server.conn_vir.id}}</a></td>
+        <td><a href="/detail_v/?dID={{vir_server.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endif%}
+{%if networks|length%}
+<table id="" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" class="danger">
+        <h4 style="text-align:center; font-weight:bold">网络设备主要信息概览</h4>
+    </th>
+    <tr>
+        <th>序号</th>
+        <th>ID</th>
+        <th>网络设备ip</th>
+        <th>网络设备名</th>
+        <th>设备唯一标识</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for network in networks%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{network.id}}</td>
+        <td>{{network.host_ip}}</td>
+        <td>{{network.host_name}}</td>
+        <td>{{network.sn}}</td>
+        <td><a href="/detail_n/?dID={{network.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endif%}
+{%if others|length%}
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" class="warning">
+        <h4 style="text-align:center; font-weight:bold">其它设备主要信息概览</h4>
+    </th>
+    <tr>
+        <th>序号</th>
+        <th>ID</th>
+        <th>设备IP</th>
+        <th>设备名称</th>
+        <th>设备的唯一标识</th>
+        <th>设备所在机柜id</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for other in others%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{other.id}}</td>
+        <td>{{other.ip}}</td>
+        <td>{{other.machine_name|default:"---"}}</td>
+        <td>{{other.sn_key}}</td>
+        <td>{{other.oth_cab_id|cab_name}}</td>
+        <td><a href="/detail_o/?dID={{otder.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endif%}
+{%endblock body%}
+
+

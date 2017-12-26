@@ -1,0 +1,329 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    tr {
+        text-align: center;
+    }
+
+    .search {
+        background-color: #E3E3E3;
+        padding: 3px;
+        width: 40%;
+    }
+
+</style>
+
+<script>
+    $(function () {
+        $(".type").on("click", function () {
+            var search_type = $(this).attr("data-value");
+            var search_name = $(this).text();
+            var $select_types = $('#select_types');
+            $select_types.attr("data-value", search_type).html(search_name+"&nbsp;&nbsp;<span class='caret'></span>");
+        });
+        $('#search_keywords').keydown(function (event) {
+            if (event.keyCode == 13) {
+                var type = $("#select_types").attr("data-value");
+                var keywords = $('#search_keywords').val();
+                var request_url = '';
+
+                if (keywords == '') {
+                    alert("输入搜索内容，please!");
+                    return
+                }
+                if (type == 'all') {
+                    request_url = "/search_all/?keywords=" + keywords
+                }
+                else if (type == 'physicalserver') {
+                    request_url = "/search_physicalserver/?keywords=" + keywords
+                }
+                else if (type == 'virtualserver') {
+                    request_url = "/search_virtualserver/?keywords=" + keywords
+                }
+                else if (type == 'network') {
+                    request_url = "/search_network/?keywords=" + keywords
+                }
+                else if (type == 'othermachine') {
+                    request_url = "/search_othermachine/?keywords=" + keywords
+                }
+                window.open(request_url, '');
+            }
+        })
+    })
+</script>
+{%endblock head%}
+
+    {%block body%}
+        <div class="container-fluid zerolmp">
+            <div class="row">
+
+                <div style="clear:both;float:left; margin-top: 30px; width: 18%; padding: 0px 10px 0;">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a data-toggle="collapse" data-target="#list-group-1" id="platform1">
+                                <span class="glyphicon glyphicon-th-large"></span>
+                                资产管理 <span class="caret pull-right"></span>
+                            </a>
+                            <div id="list-group-1" class="collapse in list-group-div" style="text-indent: 3px;">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="#model01"><span class="glyphicon glyphicon-book"></span> 机房机柜概览</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#model02"><span class="glyphicon glyphicon-book"></span> 物理设备概览</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#model03"><span class="glyphicon glyphicon-book"></span> 虚拟设备概览</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#model04"><span class="glyphicon glyphicon-book"></span> 网络设备概览</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#model05"><span class="glyphicon glyphicon-book"></span> 其它设备概览</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#model07"><span class="glyphicon glyphicon-book"></span> 设备操作记录</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-target="#list-group-2" id="platform2">
+                                <span class="glyphicon glyphicon-th-large"></span>
+                                报表平台<span class="caret pull-right"></span>
+                            </a>
+                            <div id="list-group-2" class="collapse list-group-div">
+                                <ul style="margin-bottom: 0px;padding-bottom: 0px; text-indent: 3px" class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="/reports/report/"><span class="glyphicon  glyphicon-book"></span> 资产报表</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="/reports/report/"><span class="glyphicon  glyphicon-book"></span> 日志报表</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon  glyphicon-book"></span> 报表三</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon  glyphicon-book"></span> 报表四</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <a data-toggle="collapse" data-target="#list-group-3" id="platform3">
+                                    <span class="glyphicon glyphicon-th-large"></span>
+                                    自动化平台 <span class="caret pull-right"></span>
+                            </a>
+                            <div id="list-group-3" class="collapse list-group-div">
+                                <ul style="margin-bottom: 0px;padding-bottom: 0px; text-indent: 3px;" class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon glyphicon-dashboard"></span> 平台1</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon glyphicon-dashboard"></span> 平台2</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon glyphicon-dashboard"></span> 平台3</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon glyphicon-dashboard"></span> 平台4</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-target="#list-group-4" id="platform4">
+                                    <span class="glyphicon glyphicon-th-large"></span>
+                                    平台链接 <span class="caret pull-right"></span>
+                            </a>
+                            <div id="list-group-4" class="collapse list-group-div">
+                                <ul style="margin-bottom: 0px;padding-bottom: 0px; text-indent: 3px;" class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="http://www.imoocc.com"><span class="glyphicon glyphicon-home">&nbsp;</span> WIKI</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="http://www.imoocc.com"><span class="glyphicon glyphicon-home">&nbsp;</span>Mail</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-target="#list-group-5" id="platform5">
+                                <span class="glyphicon glyphicon-th-large"></span>
+                                用户中心 <span class="caret pull-right"></span>
+                            </a>
+                            <div id="list-group-5" class="collapse list-group-div">
+                                <ul style="margin-bottom: 0px;padding-bottom: 0px; text-indent: 3px;" class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon glyphicon-user"></span> 个人资料</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon glyphicon-edit"></span> 修改密码</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <div style="width: 80%; float: right; padding-top: 30px;">
+                    <div class="success">
+                        <h4 style="text-align:center; width: 60%; float: left; background:#E3E3E3; line-height: 40px; margin: 0; font-weight:bold;">资产概览</h4>
+                        <div class="input-group search">
+                            <div class="input-group-btn">
+                                <span id="select_types" class="btn btn-default dropdown-toggle" data-value="all" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #a3cf62;">
+                                    搜索全部&nbsp;&nbsp;<span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" id="select_menu">
+                                    <li data-value="physicalserver" class="type"><a href="javascript: void(0)">物理设备</a></li>
+                                    <li data-value="virtualserver" class="type"><a href="javascript: void(0)">虚拟设备</a></li>
+                                    <li data-value="network" class="type"><a href="javascript: void(0)">网络设备</a></li>
+                                    <li data-value="othermachine" class="type"><a href="javascript: void(0)">其它设备</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" id="search_keywords" name="q" class="form-control" aria-label="Text input with dropdown button" placeholder="search">
+                        </div>
+                    </div>
+                    <div style="padding: 15px;"></div>
+
+                    <table id="model01" class="table table-bordered table-hover table-striped" style="">
+                        <thead>
+                            <th colspan="5" style="background:#E3E3E3;">
+                                <h4 style="text-align: center;">机房机柜信息概览</h4>
+                            </th>
+                            <tr>
+                                <td width="20%">序号</td>
+                                <td width="30%">机柜总数</td>
+                                <td width="30%">备注</td>
+                                <td width="20%">查看</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <td>1</td>
+                                <td>{{cabinets | length }}</td>
+                                <td></td>
+                                <td><a href="/list/?type=cb&p=1">全部</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <table id="model02" class="table table-bordered table-hover table-striped" style="margin-top:50px;">
+                        <thead>
+                            <th colspan="7" style="background:#E3E3E3;">
+                                <h4 style="text-align: center;">物理设备信息概览</h4>
+                            </th>
+                            <tr>
+                                <td width="20%">序号</td>
+                                <td width="30%">物理设备总数</td>
+                                <td colspan="4" width="30%">宿主机分类</td>
+                                <td width="20%">查看</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2" style="line-height:56px">1</td>
+                                <td rowspan="2" style="line-height:56px">{{phy_classify.phy_num}}</td>
+                                <td rowspan="1">KVM</td>
+                                <td rowspan="1">Docker</td>
+                                <td rowspan="1">ESXI</td>
+                                <td rowspan="1">其它</td>
+                                <td rowspan="2" style="line-height:56px"><a href="/list/?type=p&p=1">全部</a></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1"><a href="/classify/?type=kvm&p=1">{{phy_classify.kvm}}</a></td>
+                                <td rowspan="1"><a href="/classify/?type=doc&p=1">{{phy_classify.docker}}</a></td>
+                                <td rowspan="1"><a href="/classify/?type=esx&p=1">{{phy_classify.esxi}}</a></td>
+                                <td rowspan="1"><a href="/classify/?type=oth&p=1">{{phy_classify.other}}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table id="model03" class="table table-bordered table-hover table-striped" style="margin-top:50px;">
+                        <thead>
+                        <th colspan="6" style="background:#E3E3E3;">
+                            <h4 style="text-align:center;">虚拟设备信息概览</h4>
+                        </th>
+                        <tr>
+                            <td width="20%">序号</td>
+                            <td width="30%">虚拟设备总数</td>
+                            <td width="30%" colspan="3">虚拟机分类</td>
+                            <td width="20%">查看</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td rowspan="2" style="line-height:56px">1</td>
+                            <td rowspan="2" style="line-height:56px">{{vir_classify.vir_num}}</td>
+                            <td rowspan="1">Vmware</td>
+                            <td rowspan="1">Docker</td>
+                            <td rowspan="1">KVM</td>
+                            <td rowspan="2" style="line-height:56px"><a href="/list/?type=v&p=1">全部</a></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1"><a href="/classify/?type=VM&p=1">{{vir_classify.vmware}}</a></td>
+                            <td rowspan="1"><a href="/classify/?type=Do&p=1">{{vir_classify.docker}}</a></td>
+                            <td rowspan="1"><a href="/classify/?type=KV&p=1">{{vir_classify.kvm}}</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <table id="model04" class="table table-bordered table-hover table-striped" style="margin-top:50px;">
+                        <thead>
+                        <th colspan="5" style="background:#E3E3E3;">
+                            <h4 style="text-align:center;">网络设备信息概览</h4>
+                        </th>
+                        <tr>
+                            <td width="20%">序号</td>
+                            <td width="30%">网络设备总数</td>
+                            <td width="30%">备注</td>
+                            <td width="20%">查看</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>{{networks|length}}</td>
+                            <td></td>
+                            <td><a href="/list/?type=n&p=1">全部</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table id="model05" class="table table-bordered table-hover table-striped" style="margin-top:50px;">
+                        <thead>
+                        <th colspan="5" style="background:#E3E3E3;">
+                            <h4 style="text-align:center;">其它设备信息概览</h4>
+                        </th>
+                        <tr>
+                            <td width="20%">序号</td>
+                            <td width="30%">其它设备总数</td>
+                            <td width="30%">备注</td>
+                            <td width="20%">查看</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>{{othermachines|length}}</td>
+                            <td></td>
+                            <td><a href="/list/?type=o&p=1">全部</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+{%endblock body%}

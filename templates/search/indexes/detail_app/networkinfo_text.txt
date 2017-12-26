@@ -1,0 +1,5 @@
+{{ object.host_ip }}
+{{ object.sn }}
+{{ object.host_name }}
+
+

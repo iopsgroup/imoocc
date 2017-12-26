@@ -1,0 +1,9 @@
+{{ object.id }}
+{{ object.server_ip }}
+{{ object.machine_brand }}
+{{ object.system_ver }}
+{{ object.sys_hostname }}
+{{ object.mac }}
+{{ object.sn }}
+{{ object.vir_type }}
+

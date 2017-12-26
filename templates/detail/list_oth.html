@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{%block head%}
+{%load filters%}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+<table id="model01" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">其它设备主要信息概览</h4>
+    </th>
+    <tr>
+        <th>ID</th>
+        <th>设备IP</th>
+        <th>设备名称</th>
+        <th>设备的唯一标识</th>
+        <th>设备所在机柜id</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for other in page%}
+    <tr>
+        <td>{{other.id}}</td>
+        <td>{{other.ip}}</td>
+        <td>{{other.machine_name|default:'---'}}</td>
+        <td>{{other.sn_key}}</td>
+        <td>{{other.oth_cab_id|cab_name}}</td>
+        <td><a href="/detail_o/?dID={{other.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endblock body%}
+
+

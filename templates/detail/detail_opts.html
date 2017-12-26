@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th,
+    table td {
+        text-align: center;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+{%load filters%}
+<table class="table table-hover table-striped">
+    <thead>
+    <th colspan="3" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; font-weight:bold"> {{detail_name}}详细信息</h4>
+    </th>
+    <tr>
+        <th style="width:20%;">编号</th>
+        <th style="width:30%; text-align: left;">名称</th>
+        <th style="width:50%; text-align: left;">值</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <th scope="row">1</th>
+        <td style="text-align: left;">id</td>
+        <td style="text-align: left;">{{item.id}}</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td style="text-align: left;">操作序号</td>
+        <td style="text-align: left;">{{item.number}}</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td style="text-align: left;">设备的唯一标识</td>
+        <td style="text-align: left;">{{item.sn_key}}</td>
+    </tr>
+    <tr>
+        <th scope="row">4</th>
+        <td style="text-align: left;">设备类型</td>
+        <td style="text-align: left;">{{item.machine_type}}</td>
+    </tr>
+    <tr>
+        <th scope="row">5</th>
+        <td style="text-align: left;">设备使用状态</td>
+        <td style="text-align: left;">{{item.state|get_state:''}}</td>
+    </tr>
+    <tr>
+        <th scope="row">6</th>
+        <td style="text-align: left;">操作人用户名</td>
+        <td style="text-align: left;">{{item.person}}</td>
+    </tr>
+    <tr>
+        <th scope="row">7</th>
+        <td style="text-align: left;">操作内容</td>
+        <td style="text-align: left;">{{item.operation}}</td>
+    </tr>
+    <tr>
+        <th scope="row">8</th>
+        <td style="text-align: left;">操作时间</td>
+        <td style="text-align: left;">{{item.time}}</td>
+    </tr>
+    <tr>
+        <th scope="row">9</th>
+        <td style="text-align: left;">备注</td>
+        <td style="text-align: left;">{{item.remark}}</td>
+    </tr>
+    </tbody>
+</table>
+
+{%endblock body%}
+

@@ -1,0 +1,49 @@
+{%extends 'base.html'%}
+{%block head%}
+{%load filters%}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+{%if page.object_list|length != 0%}
+<table id="" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">宿主机信息</h4>
+    </th>
+    <tr>
+        <th>ID</th>
+        <th>服务器IP</th>
+        <th>服务器类型</th>
+        <th>操作系统主机名</th>
+        <th>操作系统版本</th>
+        <th>使用状态</th>
+        <th>连接的用户</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for vir_server in page%}
+    <tr>
+        <td>{{vir_server.id}}</td>
+        <td>{{vir_server.server_ip}}</td>
+        <td>{{vir_server.server_type}}</td>
+        <td>{{vir_server.sys_hostname}}</td>
+        <td>{{vir_server.system_ver}}</td>
+        <td>{{ sn_states|get_state:vir_server.conn_vir_id }}</td>
+        <td><a href="/detail_c/?dID={{vir_server.conn_vir.id}}" target="_blank">用户ID={{vir_server.conn_vir.id}}</a></td>
+        <td><a href="/detail_v/?dID={{vir_server.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%else%}
+<h1 style="color: red; text-align: center;padding-top: 150px; padding-bottom: 150px; margin: 0; clear: both;">宿主机内暂无虚拟机数据</h1>
+{%endif%}
+{%endblock body%}
+
+

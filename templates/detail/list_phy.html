@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{%block head%}
+{% load filters %}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+{%load filters%}
+<table id="" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">物理设备主要信息概览</h4>
+    </th>
+    <tr>
+        <th>ID</th>
+        <th>服务器IP</th>
+        <th>服务器品牌</th>
+        <th>操作系统版本</th>
+        <th>使用状态</th>
+        <th>宿主机类型</th>
+        <th>连接用户</th>
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for phy_server in page%}
+    <tr>
+        <td class="sn" data-value="{{phy_server.sn}}">{{phy_server.id}}</td>
+        <td>{{phy_server.server_ip}}</td>
+        <td>{{phy_server.machine_brand}}</td>
+        <td>{{phy_server.system_ver}}</td>
+        <td class="breatde-btn" axis="{{phy_server.sn}}">{{ sn_states|get_state:phy_server.conn_phy_id }}</td>
+        <td><a href="/list/?type=ct{{phy_server.id}}&p=1" target="_blank">{{phy_server.vir_type|revalue}}</a></td>
+        <td><a href="/detail_c/?dID={{phy_server.conn_phy.id}}" target="_blank">用户ID={{phy_server.conn_phy.id}}</a></td>
+        <td><a href="/detail_p/?dID={{phy_server.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endblock body%}
+
+

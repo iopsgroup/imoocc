@@ -1,2 +1,7 @@
-# imoocc
-pytho＋django运维自动化，实现自动化探测扫描，ansible2.4的自动化任务执行等功能
+# 运维自动化工程
+
+我们工程代码将陆续开源并对外，更新在githup，地址：
+https://github.com/iopsgroup/imoocc
+
+第一期：自动化资产扫描探测
+

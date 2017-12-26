@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../imooc-django/.idea/imooc-django.iml" filepath="$PROJECT_DIR$/../imooc-django/.idea/imooc-django.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/iops.iml" filepath="$PROJECT_DIR$/.idea/iops.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../iops_11/.idea/iops.iml" filepath="$PROJECT_DIR$/../iops_11/.idea/iops.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../opsi/.idea/opsi.iml" filepath="$PROJECT_DIR$/../opsi/.idea/opsi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../test/.idea/test.iml" filepath="$PROJECT_DIR$/../test/.idea/test.iml" />
+    </modules>
+  </component>
+</project>
+

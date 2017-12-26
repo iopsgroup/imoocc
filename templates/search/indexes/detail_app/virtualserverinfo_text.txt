@@ -1,0 +1,8 @@
+{{ object.id }}
+{{ object.server_ip }}
+{{ object.server_type }}
+{{ object.system_ver }}
+{{ object.sys_hostname }}
+{{ object.sn }}
+
+

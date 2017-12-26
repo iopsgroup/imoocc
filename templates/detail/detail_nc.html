@@ -1,0 +1,102 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th,
+    table td {
+        text-align: center;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+{%load filters%}
+<table class="table table-hover table-striped">
+    <thead>
+    <th colspan="3" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; font-weight:bold"> {{detail_name}}详细信息</h4>
+    </th>
+    <tr>
+        <th style="width:20%;">编号</th>
+        <th style="width:30%; text-align: left;">名称</th>
+        <th style="width:50%; text-align: left;">值</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <th scope="row">01</th>
+        <td style="text-align: left;">id</td>
+        <td style="text-align: left;">{{item.id}}</td>
+    </tr>
+    <tr>
+        <th scope="row">02</th>
+        <td style="text-align: left;">用户名</td>
+        <td style="text-align: left;">{{item.tel_username}}</td>
+    </tr>
+    <tr>
+        <th scope="row">03</th>
+        <td style="text-align: left;">设备登录的ip</td>
+        <td style="text-align: left;">{{item.tel_hostip}}</td>
+    </tr>
+    <tr>
+        <th scope="row">04</th>
+        <td style="text-align: left;">唯一设备ID</td>
+        <td style="text-align: left;">{{item.sn_key}}</td>
+    </tr>
+    <tr>
+        <th scope="row">05</th>
+        <td style="text-align: left;">用户连接状态</td>
+        <td style="text-align: left;">{{ item.tel_status|netconn_states }}</td>
+    </tr>
+    <tr>
+        <th scope="row">06</th>
+        <td style="text-align: left;">用户连接类型</td>
+        <td style="text-align: left;">{{ item.tel_type|netconn_types }}</td>
+    </tr>
+    <tr>
+        <th scope="row">07</th>
+        <td style="text-align: left;">设备登录的端口</td>
+        <td style="text-align: left;">{{ item.tel_host_port }}</td>
+    </tr>
+    <tr>
+        <th scope="row">08</th>
+        <td style="text-align: left;">设备用户密码</td>
+        <td style="text-align: left;">{{ item.tel_userpasswd }}</td>
+    </tr>
+    <tr>
+        <th scope="row">09</th>
+        <td style="text-align: left;">设备超级用户密码</td>
+        <td style="text-align: left;">{{ item.tel_enpasswd }}</td>
+    </tr>
+    <tr>
+        <th scope="row">10</th>
+        <td style="text-align: left;">关联的网络设备名称</td>
+        <td style="text-align: left;">{{ item.dev_info.host_name }}</td>
+    </tr>
+    {% comment %}
+    <tr>
+        <th scope="row">11</th>
+        <td style="text-align: left;">使用状态</td>
+        <td style="text-align: left;">
+            <form action="/record/state_handdle/?detail_type=n" method="post" class="form-inline">
+                <input type="text" name="conn_id" value="{{item.sn_key}}" style="display: none">
+                <select class="form-control" name="state">
+                    <option>{{sn_states|get_state_n:item.sn_key}}</option>
+                    <option class="divider">-------------</option>
+                    <option>下线</option>
+                    <option>线上运行</option>
+                    <option>测试使用</option>
+                    <option>已报废</option>
+                </select>
+                <button type="submit" class="btn btn-default btn-success">提交修改</button>
+                {%csrf_token%}
+            </form>
+
+        </td>
+    </tr>
+    {% endcomment %}
+    </tbody>
+</table>
+
+{%endblock body%}
+

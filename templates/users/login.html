@@ -1,0 +1,98 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    .notice{
+        color: red;
+        display: none;
+        font-size: 14px;
+        font-family: 'Microsoft Yahei';
+    }
+</style>
+
+<script>
+    $(function(){
+        var $uname = $("#user_name");
+        var $upwd = $("#user_passwd");
+
+        var uname_ok = false;
+        var upwd_ok = false;
+
+        $uname.blur(function(){
+            var uname = $uname.val();
+            var len = uname.length;
+            if(len<5){
+                $uname.next().html('请输入5~10位的用户名！').show();
+                uname_ok = false;
+            }else{
+                $uname.next().hide();
+                uname_ok = true;
+            }
+        });
+
+        $upwd.blur(function(){
+            var upwd = $upwd.val();
+            var len = upwd.length;
+
+            if(len<6 || len>20){
+                $upwd.next().html("请输入6~20位的用户密码！").show();
+                upwd_ok = false;
+            }else{
+                $upwd.next().hide();
+                upwd_ok = true;
+            }
+        });
+
+        $("#login").submit(function(){
+            $uname.blur();
+            $upwd.blur();
+            return upwd_ok == true && upwd_ok == true;
+        });
+
+        if("{{error_name}}"=='1'){
+            $uname.next().html('用户名错误，请重新输入！').show();
+            uname_ok = false;
+        }
+        if("{{error_passwd}}"=='1'){
+            $upwd.next().html('密码错误，请重新输入！').show();
+            upwd_ok = false;
+        }
+    })
+</script>
+{%endblock head%}
+
+{%block body%}
+<div class="form-horizontal col-sm-offset-4" style="padding-top:100px;padding-bottom: 100px;">
+    <form action="/user/login_haddle/" method="post">
+        {%csrf_token%}
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">用户名：</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="user_name" id="user_name" value="{{user_name}}" placeholder="Username">
+                <div class="notice">用户名不正确！</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+            <div class="col-sm-3">
+                <input type="password" class="form-control" name="user_passwd" id="user_passwd" value="{{user_passwd}}" placeholder="Password">
+                <div class="notice">密码不正确！</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember_uname" value="1" checked="checked"> 记住用户名
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-2">
+                <button type="submit" class="btn btn-default" id="login">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            </div>
+        </div>
+    </form>
+</div>
+{%endblock body%}
+

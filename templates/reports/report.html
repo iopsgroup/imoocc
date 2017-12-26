@@ -1,0 +1,125 @@
+{%extends 'base.html'%}
+{%block head%}
+    <style></style>
+    <script src="/static/js/echarts.min.js"></script>
+
+{%endblock head%}
+
+    {%block body%}
+        <div class="container-fluid zerolmp">
+            <div class="row">
+
+                <div style="clear:both;float:left; margin-top: 30px; width: 18%; padding: 0px 10px 0;">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a data-toggle="collapse" data-target="#list-group-1" id="platform2">
+                                <span class="glyphicon glyphicon-th-large"></span>
+                                资产报表<span class="caret pull-right"></span>
+                            </a>
+                            <div id="list-group-1" class="collapse list-group-div">
+                                <ul style="margin-bottom: 0px;padding-bottom: 0px; text-indent: 3px" class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="/reports/histogram/"><span class="glyphicon  glyphicon-book"></span> 设备数量报表</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="/reports/rack/"><span class="glyphicon  glyphicon-book"></span> 机柜图</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon  glyphicon-book"></span> 报表三</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon  glyphicon-book"></span> 报表四</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <a data-toggle="collapse" data-target="#list-group-2" id="platform2">
+                                <span class="glyphicon glyphicon-th-large"></span>
+                                日志报表<span class="caret pull-right"></span>
+                            </a>
+                            <div id="list-group-2" class="collapse list-group-div">
+                                <ul style="margin-bottom: 0px;padding-bottom: 0px; text-indent: 3px" class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="/reports/histogram/"><span class="glyphicon  glyphicon-book"></span> 柱状图</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="/reports/rack/"><span class="glyphicon  glyphicon-book"></span> 机柜图</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon  glyphicon-book"></span> 报表三</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"><span class="glyphicon  glyphicon-book"></span> 报表四</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div style="width: 80%; float: right; padding-top: 30px;">
+
+                    <div id="chartmain" style="height: 400px; margin: auto 20px;"></div>
+                    <script type="text/javascript">
+                        var option = {
+                            title:{
+                                text:'资产数量'
+                            },
+                            tooltip:{},
+                            legend:{
+                                data:['用户来源']
+                            },
+                            xAxis:{
+                                data:["Android","IOS","PC","Ohter"]
+                            },
+                            yAxis:{
+
+                            },
+                            series:[{
+                                name:'访问量',
+                                type:'line',
+                                data:[500,200,360,100]
+                            }]
+                        };
+                        //初始化echarts实例
+                        var myChart = echarts.init(document.getElementById('chartmain'));
+
+                        //使用制定的配置项和数据显示图表
+                        myChart.setOption(option);
+                    </script>
+
+
+
+                    {% comment %}
+                    <nav aria-label="Page navigation" class="col-md-4 col-md-offset-4">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    {%endcomment%}
+
+
+                </div>
+
+            </div>
+        </div>
+
+{%endblock body%}

@@ -1,0 +1,79 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th,
+    table td {
+        text-align: center;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+{%load filters%}
+<table class="table table-hover table-striped">
+    <thead>
+    <th colspan="3" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; font-weight:bold"> {{detail_name}}详细信息</h4>
+    </th>
+    <tr>
+        <th style="width:20%;">编号</th>
+        <th style="width:30%; text-align: left;">名称</th>
+        <th style="width:50%; text-align: left;">值</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td style="text-align: left;">id</td>
+        <td style="text-align: left;">{{item.id}}</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td style="text-align: left;">ssh用户名 (ssh_username)</td>
+        <td style="text-align: left;">{{item.ssh_username}}</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td style="text-align: left;">"ssh_userpasswd": "ssh用户密码"</td>
+        <td style="text-align: left;">{{item.ssh_userpasswd}}</td>
+    </tr>
+    <tr>
+        <th scope="row">4</th>
+        <td style="text-align: left;">"sn_key": "唯一设备标识"</td>
+        <td style="text-align: left;">{{item.sn_key}}</td>
+    </tr>
+    <tr>
+        <th scope="row">5</th>
+        <td style="text-align: left;">"ssh_host_port": "ssh登录的端口"</td>
+        <td style="text-align: left;">{{item.ssh_host_port}}</td>
+    </tr>
+    <tr>
+        <th scope="row">6</th>
+        <td style="text-align: left;">"ssh_status": "用户连接状态"</td>
+        <td style="text-align: left;">{{item.ssh_status}}</td>
+    </tr>
+    <tr>
+        <th scope="row">7</th>
+        <td style="text-align: left;">"ssh_hostip": "ssh登录的ip",</td>
+        <td style="text-align: left;">{{item.ssh_hostip}}</td>
+    </tr>
+    <tr>
+        <th scope="row">8</th>
+        <td style="text-align: left;">"ssh_type": "用户连接类型"</td>
+        <td style="text-align: left;">{{item.ssh_type}}</td>
+    </tr>
+    <tr>
+        <th scope="row">9</th>
+        <td style="text-align: left;">"ssh_rsa": "ssh密钥"</td>
+        <td style="text-align: left;">{{item.ssh_rsa|default:"---"}}</td>
+    </tr>
+    <tr>
+        <th scope="row">10</th>
+        <td style="text-align: left;">"rsa_pass": "私钥的密钥",</td>
+        <td style="text-align: left;">{{item.rsa_pass|default:'---'}}</td>
+    </tr>
+    </tbody>
+</table>
+
+{%endblock body%}
+

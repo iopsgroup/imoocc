@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+<table id="model01" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">用户连接信息概览</h4>
+    </th>
+    <tr>
+        <th>ID</th>
+        <th>ssh用户名</th>
+        <th>登录ip</th>
+        <th>用户连接状态</th>
+        <th>用户连接类型</th>
+        <th>查看详情</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for conn in page%}
+    <tr>
+        <th>{{conn.id}}</th>
+        <th>{{conn.ssh_username|cut:'\n'}}</th>
+        <th>{{conn.ssh_hostip|cut:'\n'}}</th>
+        <th>{{conn.ssh_status|cut:'\n'}}</th>
+        <th>{{conn.ssh_type}}</th>
+        <th><a href="/detail_c/?dID={{conn.id}}" target="_blank">点击详细信息</a></th>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+
+{%endblock body%}
+
+

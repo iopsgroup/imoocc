@@ -1,0 +1,128 @@
+[E 20171225 16:51:45 exception:135] Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/renren/Work/okooo/code/imoocc/apps/detail/views.py", line 25, in index
+    return render(request, 'detail/index.html', context)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/loader.py", line 18, in get_template
+    engines = _engine_list(using)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/loader.py", line 72, in _engine_list
+    return engines.all() if using is None else [engines[using]]
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/utils.py", line 89, in all
+    return [self[alias] for alias in self]
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/utils.py", line 80, in __getitem__
+    engine = engine_cls(params)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/backends/django.py", line 30, in __init__
+    options['libraries'] = self.get_templatetag_libraries(libraries)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/backends/django.py", line 48, in get_templatetag_libraries
+    libraries = get_installed_libraries()
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/backends/django.py", line 113, in get_installed_libraries
+    for name in get_package_libraries(pkg):
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/template/backends/django.py", line 126, in get_package_libraries
+    module = import_module(entry[1])
+  File "/opt/python2.7.13/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/renren/Work/okooo/code/imoocc/apps/detail/templatetags/filters.py", line 4, in <module>
+    from apps.detail.models import *
+  File "/Users/renren/Work/okooo/code/imoocc/apps/detail/models.py", line 7, in <module>
+    class ConnectionInfo(models.Model):
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/db/models/base.py", line 118, in __new__
+    "INSTALLED_APPS." % (module, name)
+RuntimeError: Model class apps.detail.models.ConnectionInfo doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
+[E 20171225 16:51:45 basehttp:124] "GET / HTTP/1.1" 500 147613
+[W 20171225 16:51:45 base:152] Not Found: /favicon.ico
+[W 20171225 16:51:45 basehttp:124] "GET /favicon.ico HTTP/1.1" 404 3245
+[I 20171225 16:53:35 basehttp:124] "GET / HTTP/1.1" 200 21429
+[I 20171225 16:53:35 basehttp:124] "GET /static/css/bootstrap.min.css HTTP/1.1" 304 0
+[I 20171225 16:53:35 basehttp:124] "GET /static/js/bootstrap.min.js HTTP/1.1" 304 0
+[I 20171225 16:53:35 basehttp:124] "GET /static/js/jquery-1.12.4.min.js HTTP/1.1" 304 0
+[I 20171225 16:53:35 basehttp:124] "GET /static/images/imoocc.png HTTP/1.1" 200 3429
+[I 20171225 16:53:35 basehttp:124] "GET /static/fonts/glyphicons-halflings-regular.woff HTTP/1.1" 200 23424
+[I 20171225 16:53:40 basehttp:124] "GET /list/?type=p&p=1 HTTP/1.1" 302 0
+[I 20171225 16:53:40 basehttp:124] "GET /user/login/ HTTP/1.1" 200 6602
+[I 20171225 16:53:41 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:42 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:43 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:43 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:44 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:44 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:45 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:45 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:47 basehttp:124] "GET / HTTP/1.1" 200 21429
+[I 20171225 16:53:55 basehttp:124] "GET /list/?type=p&p=1 HTTP/1.1" 302 0
+[I 20171225 16:53:55 basehttp:124] "GET /user/login/ HTTP/1.1" 200 6602
+[I 20171225 16:53:57 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:58 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:58 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:58 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:53:59 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 200 6618
+[I 20171225 16:54:00 basehttp:124] "GET / HTTP/1.1" 200 21429
+[I 20171225 16:54:27 basehttp:124] "GET /user/login/ HTTP/1.1" 200 6602
+[I 20171225 17:01:55 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 302 0
+[I 20171225 17:01:55 basehttp:124] "GET / HTTP/1.1" 200 21495
+[I 20171225 17:01:55 basehttp:124] "GET /static/css/bootstrap.min.css HTTP/1.1" 200 114011
+[I 20171225 17:01:55 basehttp:124] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 34653
+[I 20171225 17:01:55 basehttp:124] "GET /static/js/jquery-1.12.4.min.js HTTP/1.1" 200 97163
+[I 20171225 17:01:55 basehttp:124] "GET /static/images/imoocc.png HTTP/1.1" 200 3429
+[I 20171225 17:01:55 basehttp:124] "GET /static/fonts/glyphicons-halflings-regular.woff HTTP/1.1" 200 23424
+[I 20171225 17:02:00 basehttp:124] "GET /list/?type=p&p=1 HTTP/1.1" 200 5446
+[I 20171225 17:02:00 basehttp:124] "GET /static/css/bootstrap.min.css HTTP/1.1" 200 114011
+[I 20171225 17:02:00 basehttp:124] "GET /static/js/jquery-1.12.4.min.js HTTP/1.1" 200 97163
+[I 20171225 17:02:00 basehttp:124] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 34653
+[I 20171225 17:02:00 basehttp:124] "GET /static/images/imoocc.png HTTP/1.1" 200 3429
+[I 20171225 17:02:07 basehttp:124] "GET / HTTP/1.1" 200 21495
+[I 20171225 17:02:07 basehttp:124] "GET /static/js/jquery-1.12.4.min.js HTTP/1.1" 200 97163
+[I 20171225 17:02:07 basehttp:124] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 34653
+[I 20171225 17:02:07 basehttp:124] "GET /static/css/bootstrap.min.css HTTP/1.1" 200 114011
+[I 20171225 17:02:07 basehttp:124] "GET /static/images/imoocc.png HTTP/1.1" 200 3429
+[I 20171225 17:02:07 basehttp:124] "GET /static/fonts/glyphicons-halflings-regular.woff HTTP/1.1" 200 23424
+[I 20171225 17:07:06 basehttp:124] "GET /classify/?type=KV&p=1 HTTP/1.1" 302 0
+[I 20171225 17:07:06 basehttp:124] "GET /user/login/ HTTP/1.1" 200 6602
+[I 20171225 17:07:07 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 302 0
+[I 20171225 17:07:07 basehttp:124] "GET /classify/?type=KV&p=1 HTTP/1.1" 200 4853
+[I 20171225 17:07:11 basehttp:124] "GET /detail_c/?dID=3 HTTP/1.1" 200 5773
+[I 20171225 17:21:44 basehttp:124] "GET / HTTP/1.1" 200 21495
+[I 20171225 17:40:36 basehttp:124] "GET / HTTP/1.1" 200 21495
+[I 20171225 17:40:41 basehttp:124] "GET /classify/?type=KV&p=1 HTTP/1.1" 200 4853
+[I 20171225 17:40:46 basehttp:124] "GET /detail_c/?dID=3 HTTP/1.1" 200 5773
+[W 20171225 17:41:50 csrf:160] Forbidden (CSRF token missing or incorrect.): /ansible/adhocdo/
+[W 20171225 17:41:50 basehttp:124] "POST /ansible/adhocdo/ HTTP/1.1" 403 2497
+[E 20171225 17:46:56 exception:135] Internal Server Error: /ansible/adhocdo/
+Traceback (most recent call last):
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/python2.7.13/lib/python2.7/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/renren/Work/okooo/code/imoocc/taskdo/views.py", line 50, in adhoc_task
+    rlog = InsertAdhocLog(taskid=taskid)
+  File "/Users/renren/Work/okooo/code/imoocc/taskdo/utils/base/MgCon.py", line 40, in __init__
+    s_conf = yaml.load(file('%s/conf/taskdo'%BASE_DIR))
+IOError: [Errno 2] No such file or directory: '/Users/renren/Work/okooo/code/imoocc/conf/taskdo'
+[E 20171225 17:46:56 basehttp:124] "POST /ansible/adhocdo/ HTTP/1.1" 500 74010
+[I 20171225 22:31:45 basehttp:124] "GET / HTTP/1.1" 200 21429
+[I 20171225 22:32:13 basehttp:124] "POST /ansible/adhocdo/ HTTP/1.1" 200 556
+[I 20171225 22:32:47 basehttp:124] "POST /ansible/adhocdo/ HTTP/1.1" 200 671
+[I 20171225 22:33:22 basehttp:124] "GET /classify/?type=KV&p=1 HTTP/1.1" 302 0
+[I 20171225 22:33:22 basehttp:124] "GET /user/login/ HTTP/1.1" 200 6602
+[I 20171225 22:33:23 basehttp:124] "POST /user/login_haddle/ HTTP/1.1" 302 0
+[I 20171225 22:33:23 basehttp:124] "GET /classify/?type=KV&p=1 HTTP/1.1" 200 4853
+[I 20171225 22:33:25 basehttp:124] "GET /detail_c/?dID=3 HTTP/1.1" 200 5773
+[I 20171225 22:34:07 basehttp:124] "GET / HTTP/1.1" 200 21495
+[I 20171225 22:34:08 basehttp:124] "GET /search_all/?keywords=5254001f3417 HTTP/1.1" 200 3767
+[I 20171225 22:34:16 basehttp:124] "GET /classify/?type=oth&p=1 HTTP/1.1" 200 4958
+[I 20171225 22:34:17 basehttp:124] "GET /detail_c/?dID=1 HTTP/1.1" 200 5773
+[I 20171225 22:34:34 basehttp:124] "POST /ansible/adhocdo/ HTTP/1.1" 200 667

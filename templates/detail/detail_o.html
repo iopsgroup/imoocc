@@ -1,0 +1,128 @@
+{%extends 'base.html'%}
+{%block head%}
+{%load filters%}
+<style>
+    table th,
+    table td {
+        text-align: center;
+    }
+</style>
+<script>
+    $(function () {
+        $(".value").click(function (event) {
+            if ($(this).children("input").length > 0)
+                return false;
+            var reValue = $(this);
+            var preText = reValue.html();
+            var inputObj = $("<input type='text' />");
+            reValue.html("");
+            inputObj.width(reValue.width()).height(reValue.height()).css({ border: "0px", fontSize: "17px", font: "Microsoft Yahei" }).val(preText)
+                .appendTo(reValue).trigger("focus").trigger("select");
+
+            inputObj.keyup(function (event) {
+                if (13 == event.keyCode){
+                    // 按下回车
+                    var text = $(this).val();
+                    reValue.html(text);
+                    $.get('/oth_detail/revalue',
+                        {"name": reValue.prev().attr("name"), "value": reValue.html(), 'dID': $('#dID').text()},
+                        function (data) {
+                            if(data.is_ok){
+                                alert('ok，已修改！');
+                            }
+                        }
+                    )
+                }
+                else if (27 == event.which) {
+                    // ESC键
+                    reValue.html(preText);
+                }
+            });
+            //已进入编辑状态后，不再处理click事件
+            inputObj.click(function () {
+                return false;
+            });
+        });
+    });
+</script>
+{%endblock head%}
+
+{%block body%}
+{%load filters%}
+<table class="table table-hover table-striped">
+    <thead>
+    <th colspan="3" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; font-weight:bold"> {{detail_name}}详细信息</h4>
+    </th>
+    <tr>
+        <th style="width:20%;">编号</th>
+        <th style="width:30%; text-align: left;">名称</th>
+        <th style="width:50%; text-align: left;">值</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td style="text-align: left;">设备id--  <span style="color:red;">(注：id值不允许修改)</span></td>
+        <td style="text-align: left;" id="dID">{{item.id}}</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td style="text-align: left;">设备ip (ip)--  <span style="color:red;">(注：ip值不允许修改)</span></td>
+        <td style="text-align: left;">{{item.ip}}</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td style="text-align: left;">设备序列号 (sn_key)--  <span style="color:red;">(注：此值不允许修改)</span></td>
+        <td style="text-align: left;">{{item.sn_key}}</td>
+    </tr>
+    <tr>
+        <th scope="row">4</th>
+        <td style="text-align: left;" name="machine_name">设备名称 (machine_name)</td>
+        <td style="text-align: left;" class="value">{{item.machine_name}}</td>
+    </tr>
+    <tr>
+        <th scope="row">5</th>
+        <td style="text-align: left;" name="oth_cab_id">设备所在机柜编号 (oth_cab_id)</td>
+        <td style="text-align: left;" class="value">{{item.oth_cab_id|cab_name}}</td>
+    </tr>
+    <tr>
+        <th scope="row">6</th>
+        <td style="text-align: left;" name="reson_str">归类原因 (reson_str)</td>
+        <td style="text-align: left;" class="value">{{item.reson_str}}</td>
+    </tr>
+    <tr>
+        <th scope="row">7</th>
+        <td style="text-align: left;" name="remark">备注</td>
+        <td style="text-align: left;" class="value">{{item.remark}}</td>
+    </tr>
+    <tr>
+        <th scope="row">8</th>
+        <td style="text-align: left;">使用状态</td>
+        <td style="text-align: left;">
+            <form action="/record/state_handdle/?detail_type=o" method="post" class="form-inline">
+                <input type="text" name="conn_id" value="{{item.sn_key}}" style="display: none">
+                <select class="form-control" name="state">
+                    <option>{{sn_states|get_state_n:item.sn_key}}</option>
+                    <option class="divider">-------------</option>
+                    <option>下线</option>
+                    <option>线上运行</option>
+                    <option>测试使用</option>
+                    <option>已报废</option>
+                </select>
+                <button type="submit" class="btn btn-default btn-success">提交修改</button>
+                {%csrf_token%}
+            </form>
+
+        </td>
+    </tr>
+    </tbody>
+    <thead>
+        <th colspan="4" style="background:#E3E3E3;">
+            <h4 style="color: red; font-weight:bold">注：以上值更改后按"Enter"键提交</h4>
+        </th>
+    </thead>
+</table>
+
+{%endblock body%}
+

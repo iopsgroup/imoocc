@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}--后台管理系统</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+        }
+
+        em {
+            font-style: normal;
+            color: #fffaaa;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .platform {
+            font-family: 'Microsoft Yahei';
+            color: #ffffff;
+            line-height: 47px;
+            text-indent: 10px;
+            display: inline-block;
+            width: 400px;
+        }
+
+        .platform a {
+            color: #ffffff;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .platform a:hover {
+            color: red;
+        }
+
+        .header {
+            background-color: #205081;
+            width: 100%;
+            float: left;
+        }
+
+        .header .login1 {
+            display: inline-block;
+            font-size: 16px;
+            font-family: 'Microsoft Yaihei';
+            color: #ffffff;
+            line-height: 47px;
+            margin-right: 15px;
+        }
+
+        .header .login2 {
+            display: inline-block;
+            font-size: 16px;
+            font-family: 'Microsoft Yaihei';
+            color: #ffffff;
+            line-height: 47px;
+            margin-right: 15px;
+        }
+
+        .login1 a,
+        .login2 a {
+            color: #ffffff;
+        }
+
+        .footer {
+            border-top: 2px solid #42ad46;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        .foot_link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .foot_link a,
+        .foot_link span {
+            color: #4e4e4e;
+        }
+
+        .foot_link a:hover {
+            color: #ff8800
+        }
+
+        .foot_link span {
+            padding: 0 10px
+        }
+
+        .footer p {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $(".login1").children('a').click(function () {
+                $("#flatform5").css("aria-expanded", "true");
+            });
+        })
+    </script>
+
+    {%block head%} {%endblock head%}
+</head>
+
+<body>
+    <div>
+        <div class="header">
+            <a href="/"><img src="/static/images/imoocc.png" alt="imoocc"></a>
+            {%if platform|default:"0" == "1"%}
+            <div class="platform">
+                <a href="#platform1">资产管理</a>&nbsp;&nbsp;
+                <a href="#platform2">报表平台</a>&nbsp;&nbsp;
+                <a href="#platform3">自动化</a>&nbsp;&nbsp;
+                <a href="#platform4">平台链接</a>&nbsp;&nbsp;
+            </div>
+            {%endif%}
+
+            {%if request.session.uid%}
+            <div class="login1 fr">
+                欢迎您：<em>{{request.session.user_name}}</em>
+                <span>&nbsp;</span>
+                <span><a href="/user/logout/">退出</a></span>
+                <span>&nbsp;|&nbsp;</span>
+                <a href="#platform5">用户中心</a>
+            </div>
+            {%else%}
+            <div class="login2 fr">
+                <a href="/user/login/">登录</a>
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a href="/user/register/" target="_blank">注册</a>
+            </div>
+            {%endif%}
+        </div>
+
+        {%block body%}{%endblock body%}
+    </div>
+
+    {%if page.object_list%}
+    <div style="width: 100%; height: 50px; text-align: center;">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {%if page.paginator.num_pages < 3%}
+                    {%for pindex in page.paginator.page_range%}
+                    <li><a href="{{request.path}}?type={{types}}&p={{pindex}}">{{pindex}}</a></li>
+                    {%endfor%}
+                {%else%}
+                    <li><a href="{{request.path}}?type={{types}}&p=1">首页</a></li>
+                    {%if page.has_previous%}
+                    <li>
+                        <a href="{{request.path}}?type={{types}}&p={{page.number|add:-1}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {%endif%}
+                    {%if page.number == 1%}
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number}}" style="background-color: #ffce7b;">{{page.number}}</a></li>
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number|add:1}}">{{page.number|add:1}}</a></li>
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number|add:2}}">{{page.number|add:2}}</a></li>
+                    {%elif page.number == page.paginator.num_pages%}
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number|add:-1}}">{{page.number|add:-2}}</a></li>
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number|add:-1}}">{{page.number|add:-1}}</a></li>
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number}}" style="background-color: #ffce7b;">{{page.number}}</a></li>
+                    {%else%}
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number|add:-1}}">{{page.number|add:-1}}</a></li>
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number}}" style="background-color: #ffce7b;">{{page.number}}</a></li>
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.number|add:1}}">{{page.number|add:1}}</a></li>
+                    {%endif%}
+                    {%if page.has_next%}
+                    <li>
+                        <a href="{{request.path}}?type={{types}}&p={{page.number|add:1}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {%endif%}
+                    <li><a href="{{request.path}}?type={{types}}&p={{page.paginator.num_pages}}">末页</a></li>
+                {%endif%}
+            </ul>
+        </nav>
+    </div>
+    {%endif%}
+
+        <div class="footer">
+            <div class="foot_link">
+                <a href="http://www.imoocc.com/" target="_blank">关于我们</a>
+                <span>|</span>
+                <a href="http://www.imoocc.com/" target="_blank">联系我们</a>
+                <span>|</span>
+                <a href="http://www.imoocc.com/" target="_blank">友情链接</a>
+            </div>
+            <p>
+                 © 2017 By IMOOCC.COM , All Rights Reserved
+            </p>
+        </div>
+</body>
+</html>

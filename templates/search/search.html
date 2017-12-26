@@ -1,0 +1,85 @@
+{%extends 'base.html'%}
+{%block head%}
+
+{%endblock head%}
+
+
+{%block body%}
+{%load filters%}
+    <div style="margin: 0; clear: both; padding-top: 20px; font-size: 25px;">搜索 "<b>{{query}}</b>" 结果如下：</div>
+    <hr>
+    <h4>page{{page}}</h4>
+    <h4>NO{{page.number}}</h4>
+    <h4>paginator{{page.paginator}}</h4>
+    <h4>{{page.object_list}}</h4>
+    <h4>哈哈{{page.object}}</h4>
+    <hr>
+    <ul>
+        {%for item in page%}
+            <li>{{item.object.id}}--{{item.object.server_ip}}</li>
+        {%empty%}
+            <li>啥也没找到</li>
+        {%endfor%}
+    </ul>
+    <hr>
+
+    <table id="" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">物理设备主要信息概览</h4>
+    </th>
+    <tr>
+        <th>编号</th>
+        <th>ID</th>
+        <th>服务器IP</th>
+        <th>服务器品牌</th>
+        <th>操作系统版本</th>
+        <th>宿主机类型</th>
+        <th>连接的用户信息</th>
+        <th>点击查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for item in page.object_list%}
+    {%if item.object.machine_brand != None%}
+    <tr>
+        <th>{{forloop.counter}}</th>
+        <th>{{item.object.id}}</th>
+        <th>{{item.object.server_ip|cut:'\n'}}</th>
+        <th>{{item.object.machine_brand|cut:'\n'}}</th>
+        <th>{{item.object.system_ver|cut:'\n'}}</th>
+        <th><a href="/list/?type=ct{{item.id}}&p=1" target="_blank">{{item.object.vir_type|revalue}}</a></th>
+        <th><a href="/list/detail_c/?dID={{item.object.conn_phy.id}}" target="_blank">用户ID={{item.object.conn_phy.id}}</a></th>
+        <th><a href="{{request.path}}detail_p/?dID={{item.object.id}}" target="_blank">设备详情</a></th>
+    </tr>
+    {%else%}
+    <tr>
+        <th>{{forloop.counter}}</th>
+        <th>{{item.object.id}}</th>
+        <th>{{item.object.server_ip}}</th>
+        <th>{{item.object.server_type}}</th>
+        <th>{{item.object.system_ver|cut:'\n'|cut:'\l'|cut:'(Final)'|cut:'Ker'}}</th>
+        <th>{{item.object.sn}}</th>
+        <th><a href="detail_c/?dID={{item.object.conn_vir.id}}" target="_blank">用户ID={{item.object.conn_vir.id}}</a></th>
+        <th><a href="{{request.path}}detail_v/?dID={{item.object.id}}" target="_blank">设备详情</a></th>
+    </tr>
+
+    {%endif%}
+    {%endfor%}
+    </tbody>
+</table>
+
+    <div style="margin: 0; clear: both; padding-top: 20px; font-size: 25px;"><b>哎～～啥也没找到！</b></div>
+
+
+
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&page={{ page.previous_page_number }}">{% endif %}« 上一页{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&page={{ page.next_page_number }}">{% endif %}下一页 »{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+
+{%endblock body%}

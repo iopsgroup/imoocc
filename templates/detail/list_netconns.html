@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+    table th {
+        text-align: left;
+    }
+</style>
+{%endblock head%}
+
+{%block body%}
+    {% load filters %}
+<table id="" class="table table-bordered table-hover table-striped">
+    <thead>
+    <th colspan="8" style="background:#E3E3E3;">
+        <h4 style="background:#E3E3E3; text-align:center; font-weight:bold">用户连接的网络设备信息概览</h4>
+    </th>
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+{#        <th>设备用户密码</th>#}
+{#        <th>设备超级用户密码</th>#}
+        <th>设备登录的ip</th>
+        <th>设备登录的端口</th>
+        <th>用户连接状态</th>
+{#        <th>用户连接类型</th>#}
+        <th>唯一设备ID</th>
+        <th>关联的网络设备名称</th>
+
+
+        <th>查看</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for netconn in page%}
+    <tr>
+        <td>{{netconn.id}}</td>
+        <td>{{netconn.tel_username}}</td>
+{#        <td>{{netconn.tel_userpasswd}}</td>#}
+{#        <td>{{netconn.tel_enpasswd}}</td>#}
+        <td>{{ netconn.tel_hostip }}</td>
+        <td>{{netconn.tel_host_port}}</td>
+        <td>{{ netconn.tel_status|netconn_states }}</td>
+{#        <td>{{ netconn.tel_type }}</td>#}
+        <td>{{ netconn.sn_key }}</td>
+        <td>{{ netconn.dev_info.host_name }}</td>
+        <td><a href="/detail_nc/?dID={{netconn.id}}" target="_blank">详情</a></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endblock body%}
+
+
