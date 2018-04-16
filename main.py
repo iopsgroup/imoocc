@@ -24,8 +24,8 @@ from scanhosts.util.nmap_all_server import NmapVMX
 from scanhosts.util.nmap_all_server import snmp_begin
 from scanhosts.util.j_filter import FilterRules
 from scanhosts.util.get_pv_relation import GetHostType
-from apps.detail.models import  PhysicalServerInfo,ConnectionInfo,OtherMachineInfo,StatisticsRecord
-from apps.operations.models import  MachineOperationsInfo
+from detail.models import  PhysicalServerInfo,ConnectionInfo,OtherMachineInfo,StatisticsRecord
+from operations.models import  MachineOperationsInfo
 
 from scanhosts.util.nmap_all_server import NetDevLogin
 from admin.settings.local_cj import BASE_DIR

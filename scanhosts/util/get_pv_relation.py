@@ -6,7 +6,7 @@
 # Created Time: 四  6/16 11:13:39 2016
 # pip install paramiko python-nmap
 #========================================================================
-from apps.detail.models import  PhysicalServerInfo
+from detail.models import  PhysicalServerInfo
 from scanhosts.lib.J_do import J_ssh_do
 from scanhosts.models import HostLoginifo
 

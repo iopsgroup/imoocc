@@ -20,7 +20,7 @@ from scanhosts.lib.J_do import J_ssh_do
 from scanhosts.lib.utils import mac_trans,sn_trans,machine_type_trans
 from scanhosts.lib.SnmpVMS import SnmpESXI
 from scanhosts.models import HostLoginifo
-from apps.detail.models import ConnectionInfo,VirtualServerInfo,PhysicalServerInfo,NetConnectionInfo,NetWorkInfo
+from detail.models import ConnectionInfo,VirtualServerInfo,PhysicalServerInfo,NetConnectionInfo,NetWorkInfo
 from scanhosts.lib.utils import prpcrypt
 from scanhosts.util.tools import sendmail
 from scanhosts.lib.utils import getsysversion

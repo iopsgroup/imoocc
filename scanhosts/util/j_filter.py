@@ -8,7 +8,7 @@
 #========================================================================
 import logging
 
-from apps.detail.models import ConnectionInfo,VirtualServerInfo,NetWorkInfo,PhysicalServerInfo
+from detail.models import ConnectionInfo,VirtualServerInfo,NetWorkInfo,PhysicalServerInfo
 from scanhosts.models import HostLoginifo
 
 logger = logging.getLogger("django")
