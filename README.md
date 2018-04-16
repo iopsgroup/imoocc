@@ -7,7 +7,9 @@ https://github.com/iopsgroup/imoocc
 
 
 常见问题：
+
 1、适用人群
+
 欢迎对Devops感兴趣，并且愿意参与开发的人员学习使用。
 使用人员：需具备python2.7的开发编程基础。了解django框架，熟悉运维体系内容。
 
