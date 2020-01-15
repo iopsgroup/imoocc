@@ -51,7 +51,7 @@ pytz==2017.3
 pyvmomi==6.5.0.2017.5.post1
 PyYAML==3.12
 redis==2.10.6
-requests==2.18.4
+requests==2.20.0
 scandir==1.6
 simplegeneric==0.8.1
 simplejson==3.13.2
