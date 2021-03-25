@@ -49,7 +49,7 @@ pysnmp==4.3.9
 python-nmap==0.6.1
 pytz==2017.3
 pyvmomi==6.5.0.2017.5.post1
-PyYAML==3.12
+PyYAML==5.4
 redis==2.10.6
 requests==2.18.4
 scandir==1.6
