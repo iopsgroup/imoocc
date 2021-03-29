@@ -41,7 +41,7 @@ pyasn1==0.3.7
 pycparser==2.18
 pycrypto==2.6.1
 pycryptodome==3.4.7
-Pygments==2.2.0
+Pygments==2.7.4
 pymongo==3.5.1
 PyNaCl==1.2.0
 pysmi==0.1.3
