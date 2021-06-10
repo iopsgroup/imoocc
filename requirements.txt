@@ -1,4 +1,4 @@
-Django==1.8.2
+Django==2.2.24
 ansible==2.4.1.0
 appnope==0.1.0
 asn1crypto==0.23.0
